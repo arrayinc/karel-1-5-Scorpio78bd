@@ -4,3 +4,54 @@
  * Stepwise refinement test! Let's collect
  * these beepers!
  */
+
+import "turns";
+
+function CollectBeeperTowers(){
+	collectAllBeepers();
+	dropAllBeepers();
+	returnHome();
+}
+
+function collectAllBeepers(){
+	while(frontIsClear()){
+		collectOneTower();
+		move();
+	}
+	collectOneTower();
+}
+
+function dropAllBeepers(){
+	while(beepersInBag()){
+		putBeeper();
+	}
+}
+
+function returnHome(){
+	turnAround();
+	moveToWall();
+	turnAround();
+}
+
+function collectOneTower(){
+	if(beepersPresent()){
+		turnLeft();
+		collectLineOfBeepers();
+		turnAround();
+		moveToWall();
+		turnLeft();
+	}
+}
+
+function collectLineOfBeepers(){
+	while(beepersPresent()){
+		pickBeeper();
+		move();
+	}
+}
+
+function moveToWall(){
+	while(frontIsClear()){
+		move();
+	}
+}
